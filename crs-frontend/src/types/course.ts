@@ -1,15 +1,13 @@
-export interface Course {
-    id: number;
-    tenMonHoc: string;
-    soTinChi: number;
-    soChoToiDa: number;
-    soChoConLai: number;
-}
+import axiosClient from './axiosClient';
+import type { Course, PagedResponse } from '../types/course';
 
-export interface PagedResponse<T> {
-    content: T[];
-    totalElements: number;
-    totalPages: number;
-    number: number;
-    size: number;
-}
+export const getCourses = (keyword?: string, page = 0, size = 10) => {
+    const params: Record<string, any> = { page, size };
+
+    // Chỉ gửi keyword lên backend khi người dùng thực sự nhập chữ
+    if (keyword && keyword.trim() !== '') {
+        params.keyword = keyword.trim();
+    }
+
+    return axiosClient.get<PagedResponse<Course>>('/api/courses', { params });
+};

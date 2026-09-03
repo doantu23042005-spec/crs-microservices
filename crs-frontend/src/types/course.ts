@@ -1,13 +1,27 @@
-import axiosClient from './axiosClient';
-import type { Course, PagedResponse } from '../types/course';
+export interface Course {
+    id: number;
+    tenMonHoc: string;
+    soTinChi: number;
+    soChoToiDa: number;
+    soChoConLai: number;
+}
 
-export const getCourses = (keyword?: string, page = 0, size = 10) => {
-    const params: Record<string, any> = { page, size };
+export interface PagedResponse<T> {
+    content: T[];
+    totalPages: number;
+    totalElements: number;
+    size: number;
+    number: number;
+}
 
-    // Chỉ gửi keyword lên backend khi người dùng thực sự nhập chữ
-    if (keyword && keyword.trim() !== '') {
-        params.keyword = keyword.trim();
-    }
+export interface CourseFormValues {
+    tenMonHoc: string;
+    soTinChi: string;
+    soChoToiDa: string;
+}
 
-    return axiosClient.get<PagedResponse<Course>>('/api/courses', { params });
+export const emptyCourseForm: CourseFormValues = {
+    tenMonHoc: '',
+    soTinChi: '',
+    soChoToiDa: '',
 };

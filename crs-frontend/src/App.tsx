@@ -7,6 +7,7 @@ import AdminCoursesPage from './pages/AdminCoursesPage';
 import RegisterCoursePage from './pages/RegisterCoursePage';
 import MyRegistrationsPage from './pages/MyRegistrationsPage';
 import Navbar from './components/Navbar';
+import ApiKeysPage from './pages/ApiKeysPage';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/" element={<Navigate to="/courses" replace />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/courses" element={<CoursesPage />} />
+
                     <Route
                         path="/admin/courses"
                         element={
@@ -25,6 +27,17 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
+
+                    {/* Bổ sung route quản trị API Key cho ADMIN */}
+                    <Route
+                        path="/admin/api-keys"
+                        element={
+                            <ProtectedRoute requiredRole="ADMIN">
+                                <ApiKeysPage />
+                            </ProtectedRoute>
+                        }
+                    />
+
                     <Route
                         path="/register-course"
                         element={

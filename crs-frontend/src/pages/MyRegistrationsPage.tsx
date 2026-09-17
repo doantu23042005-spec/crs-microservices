@@ -25,7 +25,7 @@ export default function MyRegistrationsPage() {
         try {
             const res = await getMyRegistrations();
             const activeRegistrations = res.data.filter(
-                (r) => r.trangThai === 'DA_DANG_KY' || r.trangThai === 'DA DANG KY'
+                (r) => (r.trangThai as string) === 'DA_DANG_KY' || (r.trangThai as string) === 'DA DANG KY'
             );
 
             const enriched = await Promise.all(
@@ -60,8 +60,10 @@ export default function MyRegistrationsPage() {
     }, []);
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         loadData();
-    }, [loadData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleCancel = async (row: RegistrationRow) => {
         if (!window.confirm(`Huy dang ky mon "${row.courseName}"?`)) return;

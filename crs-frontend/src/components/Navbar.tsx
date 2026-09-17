@@ -23,21 +23,27 @@ export default function Navbar() {
             }}
         >
             <Link to="/courses">Danh sach mon hoc</Link>
+
             {isAuthenticated && user?.role === 'ADMIN' && (
-                <Link to="/admin/courses">Quan tri mon hoc</Link>
+                <>
+                    <Link to="/admin/courses">Quan tri mon hoc</Link>
+                    <Link to="/admin/api-keys">Quan ly API Key</Link>
+                </>
             )}
+
             {isAuthenticated && user?.role === 'STUDENT' && (
                 <>
                     <Link to="/register-course">Dang ky hoc phan</Link>
                     <Link to="/my-registrations">Mon hoc da dang ky</Link>
                 </>
             )}
+
             <div style={{ marginLeft: 'auto' }}>
                 {isAuthenticated ? (
                     <>
-            <span style={{ marginRight: 12 }}>
-              Xin chao, {user?.username} ({user?.role})
-            </span>
+                        <span style={{ marginRight: 12 }}>
+                            Xin chao, {user?.username} ({user?.role})
+                        </span>
                         <button onClick={handleLogout}>Dang xuat</button>
                     </>
                 ) : (

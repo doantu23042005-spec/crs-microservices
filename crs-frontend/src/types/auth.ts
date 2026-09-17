@@ -4,8 +4,8 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
+    userId: number;
     token: string;
-    type: string;
     username: string;
     role: 'ADMIN' | 'STUDENT';
 }

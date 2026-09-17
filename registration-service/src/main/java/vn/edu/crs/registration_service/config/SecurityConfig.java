@@ -1,6 +1,6 @@
-package vn.edu.crs.registrationservice.config;
+package vn.edu.crs.registration_service.config;
 
-import vn.edu.crs.registrationservice.security.JwtAuthFilter;
+import vn.edu.crs.registration_service.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
